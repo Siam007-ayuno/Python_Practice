@@ -36,3 +36,17 @@ def report(books, copies):
 report(books, 100)
 best = best_book(books)
 print("Best book:", best["name"])
+lines = []
+total = 0
+for book in books:
+    line = book["name"] + " - " + rate(book) + " - $ " + str(earnings(book, 100)) + " for 100 copies"
+    lines.append(line)
+    total = total + earnings(book, 100)
+lines.append("Total: $ " + str(total))
+
+with open("report.txt", "w") as f:
+    for line in lines:
+        f.write(line + "\n")
+
+with open("report.txt") as f:
+    print(f.read())
